@@ -1,6 +1,7 @@
 package com.itheima.pojo;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
  *
  * @param <T>
  */
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Result<T> {
