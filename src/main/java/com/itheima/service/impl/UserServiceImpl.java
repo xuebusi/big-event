@@ -4,10 +4,13 @@ import com.itheima.mapper.UserMapper;
 import com.itheima.pojo.Result;
 import com.itheima.pojo.User;
 import com.itheima.service.UserService;
+import com.itheima.utils.JwtUtil;
 import com.itheima.utils.Md5Util;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,7 +37,11 @@ public class UserServiceImpl implements UserService {
             return Result.error("用户名错误");
         }
         if (Md5Util.getMD5String(password).equals(u.getPassword())) {
-            return Result.success("登录令牌。。。");
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", u.getId());
+            claims.put("username", u.getUsername());
+            String token = JwtUtil.genToken(claims);
+            return Result.success(token);
         }
         return Result.error("密码错误");
     }
