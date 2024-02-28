@@ -28,4 +28,12 @@ public interface UserService {
      * @return 用户信息
      */
     User findByUsername(String username);
+
+    /**
+     * 查询登录用户信息
+     *
+     * @param token 令牌
+     * @return 用户信息
+     */
+    Result<User> getUserInfo(String token);
 }

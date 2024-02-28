@@ -1,11 +1,10 @@
 package com.itheima.controller;
 
 import com.itheima.pojo.Result;
+import com.itheima.pojo.User;
 import com.itheima.service.UserService;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.Pattern;
@@ -27,5 +26,10 @@ public class UserController {
     public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username,
                                 @Pattern(regexp = "^\\S{5,16}$") String password) {
         return userService.login(username, password);
+    }
+
+    @GetMapping("/userInfo")
+    public Result<User> getUserInfo(@RequestHeader("Authorization") String token) {
+        return userService.getUserInfo(token);
     }
 }

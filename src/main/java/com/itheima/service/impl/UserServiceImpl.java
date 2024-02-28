@@ -50,4 +50,12 @@ public class UserServiceImpl implements UserService {
     public User findByUsername(String username) {
         return userMapper.findByUsername(username);
     }
+
+    @Override
+    public Result<User> getUserInfo(String token) {
+        Map<String, Object> claims = JwtUtil.parseToken(token);
+        String username = (String) claims.get("username");
+        User user = findByUsername(username);
+        return Result.success(user);
+    }
 }
