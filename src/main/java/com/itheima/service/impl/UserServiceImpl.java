@@ -6,6 +6,7 @@ import com.itheima.pojo.User;
 import com.itheima.service.UserService;
 import com.itheima.utils.JwtUtil;
 import com.itheima.utils.Md5Util;
+import com.itheima.utils.ThreadLocalUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -52,10 +53,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result<User> getUserInfo(String token) {
-        Map<String, Object> claims = JwtUtil.parseToken(token);
-        String username = (String) claims.get("username");
-        User user = findByUsername(username);
+    public Result<User> getUserInfo() {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        String username = (String) map.get("username");
+        User user = this.findByUsername(username);
         return Result.success(user);
     }
 }

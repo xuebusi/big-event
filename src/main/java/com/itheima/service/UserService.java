@@ -32,8 +32,7 @@ public interface UserService {
     /**
      * 查询登录用户信息
      *
-     * @param token 令牌
      * @return 用户信息
      */
-    Result<User> getUserInfo(String token);
+    Result<User> getUserInfo();
 }

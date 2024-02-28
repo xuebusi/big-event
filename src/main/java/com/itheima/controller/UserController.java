@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @GetMapping("/userInfo")
-    public Result<User> getUserInfo(@RequestHeader("Authorization") String token) {
-        return userService.getUserInfo(token);
+    public Result<User> getUserInfo() {
+        return userService.getUserInfo();
     }
 }
