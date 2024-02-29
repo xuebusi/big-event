@@ -7,7 +7,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.NotEmpty;
 
+@Validated
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
@@ -22,5 +24,10 @@ public class CategoryController {
     @GetMapping
     public Result list() {
         return categoryService.list();
+    }
+
+    @GetMapping("/detail")
+    public Result<Category> detail(@NotEmpty String id) {
+        return categoryService.detail(id);
     }
 }

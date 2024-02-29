@@ -20,4 +20,12 @@ public interface CategoryService {
      * @return 分类列表
      */
     Result<List<Category>> list();
+
+    /**
+     * 查询分类详情
+     *
+     * @param id 分类ID
+     * @return 详情
+     */
+    Result<Category> detail(String id);
 }

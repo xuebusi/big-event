@@ -38,4 +38,10 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> categories = categoryMapper.list(userId);
         return Result.success(categories);
     }
+
+    @Override
+    public Result<Category> detail(String id) {
+        Category category = categoryMapper.findById(id);
+        return Result.success(category);
+    }
 }
