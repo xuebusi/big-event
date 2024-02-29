@@ -63,16 +63,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void update(User user) {
+    public Result update(User user) {
         user.setUpdateTime(LocalDateTime.now());
         userMapper.update(user);
+        return Result.success();
     }
 
     @Override
-    public void updateAvatar(String url) {
+    public Result updateAvatar(String url) {
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
         userMapper.updateAvatar(url, id);
+        return Result.success();
     }
 
     @Override

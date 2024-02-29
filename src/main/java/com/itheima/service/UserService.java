@@ -41,16 +41,18 @@ public interface UserService {
     /**
      * 更新用户信息
      *
-     * @param user 用户
+     * @param user 用户信息
+     * @return result
      */
-    void update(User user);
+    Result update(User user);
 
     /**
      * 更新用户头像
      *
      * @param url 头像地址
+     * @return result
      */
-    void updateAvatar(String url);
+    Result updateAvatar(String url);
 
     /**
      * 更新用户密码

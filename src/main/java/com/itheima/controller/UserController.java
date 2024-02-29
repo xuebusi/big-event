@@ -38,14 +38,12 @@ public class UserController {
 
     @PutMapping("/update")
     public Result update(@RequestBody @Validated User user) {
-        userService.update(user);
-        return Result.success();
+        return userService.update(user);
     }
 
     @PatchMapping("/updateAvatar")
     public Result updateAvatar(@RequestParam @NotEmpty @URL String avatarUrl) {
-        userService.updateAvatar(avatarUrl);
-        return Result.success();
+        return userService.updateAvatar(avatarUrl);
     }
 
     @PatchMapping("/updatePwd")
