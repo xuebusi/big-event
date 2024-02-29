@@ -32,4 +32,10 @@ public class UserController {
     public Result<User> getUserInfo() {
         return userService.getUserInfo();
     }
+
+    @PutMapping("/update")
+    public Result update(@RequestBody @Validated User user) {
+        userService.update(user);
+        return Result.success();
+    }
 }

@@ -10,6 +10,7 @@ import com.itheima.utils.ThreadLocalUtil;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,5 +59,11 @@ public class UserServiceImpl implements UserService {
         String username = (String) map.get("username");
         User user = this.findByUsername(username);
         return Result.success(user);
+    }
+
+    @Override
+    public void update(User user) {
+        user.setUpdateTime(LocalDateTime.now());
+        userMapper.update(user);
     }
 }

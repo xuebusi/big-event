@@ -35,4 +35,11 @@ public interface UserService {
      * @return 用户信息
      */
     Result<User> getUserInfo();
+
+    /**
+     * 更新用户信息
+     *
+     * @param user 用户
+     */
+    void update(User user);
 }
