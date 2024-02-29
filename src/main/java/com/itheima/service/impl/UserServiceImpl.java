@@ -8,6 +8,7 @@ import com.itheima.utils.JwtUtil;
 import com.itheima.utils.Md5Util;
 import com.itheima.utils.ThreadLocalUtil;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
@@ -72,5 +73,31 @@ public class UserServiceImpl implements UserService {
         Map<String, Object> map = ThreadLocalUtil.get();
         Integer id = (Integer) map.get("id");
         userMapper.updateAvatar(url, id);
+    }
+
+    @Override
+    public Result updatePwd(Map<String, String> paramMap) {
+        String oldPwd = paramMap.get("old_pwd");
+        String newPwd = paramMap.get("new_pwd");
+        String rePwd = paramMap.get("re_pwd");
+
+        if (!StringUtils.hasLength(oldPwd)
+                || !StringUtils.hasLength(newPwd)
+                || !StringUtils.hasLength(rePwd)) {
+            return Result.error("参数不能为空");
+        }
+
+        if (!newPwd.equals(rePwd)) {
+            return Result.error("两次密码输入不一致");
+        }
+
+        Map<String, Object> map = ThreadLocalUtil.get();
+        String username = (String) map.get("username");
+        User user = this.findByUsername(username);
+        if (!user.getPassword().equals(Md5Util.getMD5String(oldPwd))) {
+            return Result.error("原密码错误");
+        }
+        userMapper.updatePwd(Md5Util.getMD5String(newPwd), user.getId());
+        return Result.success();
     }
 }

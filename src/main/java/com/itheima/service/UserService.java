@@ -3,6 +3,8 @@ package com.itheima.service;
 import com.itheima.pojo.Result;
 import com.itheima.pojo.User;
 
+import java.util.Map;
+
 public interface UserService {
     /**
      * 注册
@@ -49,4 +51,12 @@ public interface UserService {
      * @param url 头像地址
      */
     void updateAvatar(String url);
+
+    /**
+     * 更新用户密码
+     *
+     * @param paramMap 参数
+     * @return result
+     */
+    Result updatePwd(Map<String, String> paramMap);
 }

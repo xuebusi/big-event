@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import java.util.Map;
 
 @Validated
 @RestController
@@ -45,5 +46,10 @@ public class UserController {
     public Result updateAvatar(@RequestParam @NotEmpty @URL String avatarUrl) {
         userService.updateAvatar(avatarUrl);
         return Result.success();
+    }
+
+    @PatchMapping("/updatePwd")
+    public Result updatePwd(@RequestBody Map<String, String> map) {
+        return userService.updatePwd(map);
     }
 }
