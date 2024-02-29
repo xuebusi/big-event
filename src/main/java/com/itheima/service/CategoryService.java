@@ -28,4 +28,12 @@ public interface CategoryService {
      * @return 详情
      */
     Result<Category> detail(String id);
+
+    /**
+     * 更新分类
+     *
+     * @param category 分类信息
+     * @return result
+     */
+    Result update(Category category);
 }
