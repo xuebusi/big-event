@@ -66,4 +66,11 @@ public class UserServiceImpl implements UserService {
         user.setUpdateTime(LocalDateTime.now());
         userMapper.update(user);
     }
+
+    @Override
+    public void updateAvatar(String url) {
+        Map<String, Object> map = ThreadLocalUtil.get();
+        Integer id = (Integer) map.get("id");
+        userMapper.updateAvatar(url, id);
+    }
 }

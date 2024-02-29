@@ -42,4 +42,11 @@ public interface UserService {
      * @param user 用户
      */
     void update(User user);
+
+    /**
+     * 更新用户头像
+     *
+     * @param url 头像地址
+     */
+    void updateAvatar(String url);
 }

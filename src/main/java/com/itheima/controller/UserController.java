@@ -3,10 +3,12 @@ package com.itheima.controller;
 import com.itheima.pojo.Result;
 import com.itheima.pojo.User;
 import com.itheima.service.UserService;
+import org.hibernate.validator.constraints.URL;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 @Validated
@@ -36,6 +38,12 @@ public class UserController {
     @PutMapping("/update")
     public Result update(@RequestBody @Validated User user) {
         userService.update(user);
+        return Result.success();
+    }
+
+    @PatchMapping("/updateAvatar")
+    public Result updateAvatar(@RequestParam @NotEmpty @URL String avatarUrl) {
+        userService.updateAvatar(avatarUrl);
         return Result.success();
     }
 }
