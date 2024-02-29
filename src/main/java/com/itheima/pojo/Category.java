@@ -1,5 +1,6 @@
 package com.itheima.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,6 +14,8 @@ public class Category {
     @NotEmpty(message = "分类别名不能为空")
     private String categoryAlias;//分类别名
     private Integer createUser;//创建人ID
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createTime;//创建时间
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;//更新时间
 }
